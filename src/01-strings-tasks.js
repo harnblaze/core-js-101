@@ -5,7 +5,6 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-
 /**
  * Returns the result of concatenation of two strings.
  *
@@ -21,7 +20,6 @@
 function concatenateStrings(value1, value2) {
   return value1 + value2;
 }
-
 
 /**
  * Returns the length of given string.
@@ -70,7 +68,6 @@ function extractNameFromTemplate(value) {
   const lastName = value.split(' ')[2];
   return `${firstName} ${lastName.slice(0, -1)}`;
 }
-
 
 /**
  * Returns a first char of the given string.
@@ -147,7 +144,6 @@ function unbracketTag(str) {
   return str.slice(1, -1);
 }
 
-
 /**
  * Converts all characters of the specified string into the upper case
  *
@@ -211,7 +207,6 @@ function getRectangleString(width, height) {
   return row1 + rows + row2;
 }
 
-
 /**
  * Encode specified string with ROT13 cipher
  * See details:  https://en.wikipedia.org/wiki/ROT13
@@ -228,8 +223,22 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  return str
+    .split('')
+    .map((char) => {
+      let index = alphabet.indexOf(char);
+      if (index < 0) return char;
+      if (index > 25) {
+        index = index + 13 > 51 ? index - 13 : index + 13;
+      } else {
+        index = index + 13 > 25 ? index - 13 : index + 13;
+      }
+
+      return alphabet[index];
+    })
+    .join('');
 }
 
 /**
@@ -248,7 +257,6 @@ function encodeToRot13(/* str */) {
 function isString(/* value */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns playid card id.
@@ -277,7 +285,6 @@ function isString(/* value */) {
 function getCardId(/* value */) {
   throw new Error('Not implemented');
 }
-
 
 module.exports = {
   concatenateStrings,

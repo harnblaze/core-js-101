@@ -53,7 +53,7 @@ function generateOdds(len) {
  *    [] => []
  */
 function doubleArray(arr) {
-  arr.concat(arr)
+  return arr.concat(arr);
 }
 
 
